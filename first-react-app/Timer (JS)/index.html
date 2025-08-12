@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="bg-gray-900 text-white flex flex-col gap-4 justify-center items-center h-screen font-mono w-[90%] md:w-[100%]"
+  >
+    <!-- User inputs -->
+    <div class="flex justify-center items-center my-6">
+      <form id="time-form">
+        <input
+          id="hours"
+          type="number"
+          min="0"
+          placeholder="Hour"
+          class="border-2 text-center rounded mx-1 w-20 h-12"
+        />
+        <input
+          id="minutes"
+          type="number"
+          min="0"
+          max="59"
+          placeholder="Min"
+          class="border-2 text-center rounded mx-1 w-20 h-12"
+        />
+        <input
+          id="seconds"
+          type="number"
+          min="0"
+          max="59"
+          placeholder="Sec"
+          class="border-2 text-center rounded mx-1 w-20 h-12"
+        />
+      </form>
+    </div>
+    <!-- Date formatting -->
+    <div class="flex justify-center items-center flex-col">
+      <h1 id="date-text" class="text-4xl tracking-wider font-mono">00:00:00</h1>
+      
+      <!-- Finish Message -->
+      <p id="finish-message" class="my-4 text-green-300 text-xl"></p>
+
+      <!-- Buttons -->
+      <div class="flex justify-center gap-4 items-center mt-4">
+        <button
+          id="start-btn"
+          class="cursor-pointer bg-green-600 px-4 py-2 rounded"
+        >
+          Start
+        </button>
+        <button
+          id="pause-btn"
+          class="cursor-pointer bg-yellow-600 px-4 py-2 rounded"
+        >
+          Pause
+        </button>
+        <button
+          id="reset-btn"
+          class="cursor-pointer bg-red-600 px-4 py-2 rounded"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

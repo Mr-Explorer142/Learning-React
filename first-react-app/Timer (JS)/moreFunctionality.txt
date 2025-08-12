@@ -1,0 +1,3 @@
+# A finished message or sound when time’s up.
+# Input validation (e.g. max hours).
+# Auto focus or styling polish.

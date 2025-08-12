@@ -1,0 +1,9 @@
+.buttons_container {
+  background-color: #CBF1F5;
+}
+
+@media (min-width: 768px) {
+  .calculator.md-w-25 {
+    width: 25% !important;
+  }
+}
