@@ -7,6 +7,7 @@ const TodoItems = ({ todoItems, onDeleteClick }) => {
         return (
           <TodoItem
             itemDate={item.dueDate}
+            key={item.name}
             itemName={item.name}
             onDeleteClick={onDeleteClick}
           ></TodoItem>

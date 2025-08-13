@@ -1,48 +1,60 @@
-import { useState } from "react";
+import { MdFormatListBulletedAdd } from "react-icons/md";
+import { useRef } from "react";
 import styles from "./AddTodo.module.css";
 
 function AddTodo({ onNewItem }) {
+  // const [todoName, setTodoName] = useState("");
+  // const [dueDate, setDueDate] = useState("");
+  const todoNameElement = useRef();
+  const dueDateElement = useRef();
 
-  const [todoName, setTodoName] = useState();
-  const [dueDate, setDueDate] = useState();
+  // const handleNameChange = (event) => {
+  //   setTodoName(event.target.value);
+  // };
 
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
+  // const handleDateChange = (event) => {
+  //   setDueDate(event.target.value);
+  // };
 
-  const handleDateChange = (event) => {
-    setDueDate(event.target.value);
-  };
-
-  const handleOnButtonClicked = () => {
+  const handleOnButtonClicked = (event) => {
+    event.preventDefault();
+    const todoName = todoNameElement.current.value;
+    const dueDate = dueDateElement.current.value;
+    // console.log(`${todoName} is due on ${dueDate}`);
+    todoNameElement.current.value = "";
+    dueDateElement.current.value = "";
     onNewItem(todoName, dueDate);
-    setTodoName("");
-    setDueDate("");
+    // setTodoName("");
+    // setDueDate("");
   };
 
   return (
-    <div className="row mt-4">
+    <form className="row mt-4" onSubmit={handleOnButtonClicked}>
       <div className="col-6 text-start">
         <input
           className="w-100"
           type="text"
+          ref={todoNameElement}
           placeholder="Enter TODO here"
-          onChange={handleNameChange}
-          value={todoName}
+          // onChange={handleNameChange}
+          // value={todoName}
         ></input>
       </div>
       <div className="col-4">
-        <input className="w-100" type="date" onChange={handleDateChange} value={dueDate}></input>
+        <input
+          className="w-100"
+          type="date"
+          ref={dueDateElement}
+          // onChange={handleDateChange}
+          // value={dueDate}
+        ></input>
       </div>
       <div className="col-2">
-        <button
-          className={`btn btn-success ${styles.add_btn}`}
-          onClick={handleOnButtonClicked}
-        >
-          Add
+        <button type="submit" className={`btn btn-success ${styles.add_btn}`}>
+          <MdFormatListBulletedAdd />
         </button>
       </div>
-    </div>
+    </form>
   );
 }
 
