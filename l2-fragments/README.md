@@ -1,4 +1,5 @@
 # Healthy Food App
 
-<img width="1210" height="625" alt="image" src="https://github.com/user-attachments/assets/61980730-8aab-4947-abac-0d671d292b2c" />
+<img width="1088" height="604" alt="image" src="https://github.com/user-attachments/assets/cfea3b71-5701-4391-9e46-eab4264faf22" />
+
 
