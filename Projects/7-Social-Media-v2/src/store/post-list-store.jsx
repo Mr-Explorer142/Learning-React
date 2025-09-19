@@ -3,6 +3,7 @@ import { createContext, useReducer } from "react";
 export const PostList = createContext({
   postList: [],
   addPost: () => {},
+  addInitialPosts: () => {},
   deletePost: () => {},
 });
 
@@ -12,6 +13,8 @@ const postListReducer = (currPostList, action) => {
     newPostList = currPostList.filter(
       (post) => post.id !== action.payload.postId
     );
+  } else if (action.type === "ADD_INITIAL_POSTS") {
+    newPostList = action.payload.posts;
   } else if (action.type === "ADD_POST") {
     newPostList = [action.payload, ...newPostList];
   }
@@ -19,10 +22,7 @@ const postListReducer = (currPostList, action) => {
 };
 
 const PostListProvider = ({ children }) => {
-  const [postList, dispatchPostList] = useReducer(
-    postListReducer,
-    DEFAULT_POST_LIST
-  );
+  const [postList, dispatchPostList] = useReducer(postListReducer, []);
 
   const addPost = (userId, postTitle, postBody, reactions, tags) => {
     dispatchPostList({
@@ -37,6 +37,16 @@ const PostListProvider = ({ children }) => {
       },
     });
   };
+
+  const addInitialPosts = (posts) => {
+    dispatchPostList({
+      type: "ADD_INITIAL_POSTS",
+      payload: {
+        posts,
+      },
+    });
+  };
+
   const deletePost = (postId) => {
     // console.log("DELETE");
     dispatchPostList({
@@ -48,29 +58,31 @@ const PostListProvider = ({ children }) => {
   };
 
   return (
-    <PostList.Provider value={{ postList, addPost, deletePost }}>
+    <PostList.Provider
+      value={{ postList, addPost, addInitialPosts, deletePost }}
+    >
       {children}
     </PostList.Provider>
   );
 };
 
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "Going to Shylhet",
-    body: "Hello friends, I am going to Shylhet to enjoy my vacation😁",
-    reactions: 10,
-    userId: "user-11",
-    tags: ["Vacation", "Shylhet", "Enjoying"],
-  },
-  {
-    id: "2",
-    title: "Passed Bsc",
-    body: "Hello friends, I have just passed my Bsc today😁",
-    reactions: 20,
-    userId: "user-22",
-    tags: ["celebrating", "Pass"],
-  },
-];
+// const DEFAULT_POST_LIST = [
+//   {
+//     id: "1",
+//     title: "Going to Shylhet",
+//     body: "Hello friends, I am going to Shylhet to enjoy my vacation😁",
+//     reactions: 10,
+//     userId: "user-11",
+//     tags: ["Vacation", "Shylhet", "Enjoying"],
+//   },
+//   {
+//     id: "2",
+//     title: "Passed Bsc",
+//     body: "Hello friends, I have just passed my Bsc today😁",
+//     reactions: 20,
+//     userId: "user-22",
+//     tags: ["celebrating", "Pass"],
+//   },
+// ];
 
 export default PostListProvider;
